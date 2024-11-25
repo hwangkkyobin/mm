@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disable Close Button and Cursor</title>
+  <style>
+    /* 페이지 기본 스타일 */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      cursor: none; /* 마우스 커서 숨기기 */
+      touch-action: none; /* 터치 제스처 차단 */
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>니엄마 뒤짐</h1>
+
+  <script>
+    // 마우스 클릭과 터치 이벤트를 강제로 차단
+    window.addEventListener('mousedown', function (e) {
+      e.preventDefault(); // 마우스 클릭 차단
+    });
+
+    window.addEventListener('touchstart', function (e) {
+      e.preventDefault(); // 터치 이벤트 차단
+    });
+
+    // 마우스 커서를 숨깁니다
+    document.body.style.cursor = 'none';  // 커서 숨기기
+
+    // 브라우저 창의 닫기 버튼을 비활성화 (Windows, Mac에서도 적용)
+    window.onbeforeunload = function (event) {
+      event.returnValue = '엄마가 뒤졌습니까?'; // 브라우저 닫기를 방지
+    };
+
+    // 사용자가 창을 닫으려고 할 때를 방지
+    window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+      return e.returnValue = '엄마가 뒤졌습니까?'; // 창 닫기 방지
+    });
+  </script>
+</body>
+</html>
